@@ -29,7 +29,7 @@
     <a href="#message">message</a>
     <a href="#gallery">pics</a>
     <a href="#hall-of-fame">favorites</a>
-    <!-- <a href="#video">video</a> -->
+    <a href="#video">video</a>
   </nav>
 
   <main>
@@ -261,30 +261,33 @@
     </section>
 
     <section id="video" class="content-section">
-      <p class="section-kicker">now playing: one of our favorite memories</p>
-      <h2>Press Play When You Miss Me</h2>
+  <p class="section-kicker">now playing: special message from our child</p>
+  <h2>Press Play When You Miss Her</h2>
 
-      <div class="video-window">
-        <div class="window-bar">
-          <span>our_memory_player.mp4</span>
-          <span>_ □ ×</span>
-        </div>
+  <div class="video-window">
+    <div class="window-bar">
+      <span>memory_player.mp4</span>
+      <span>_ □ ×</span>
+    </div>
 
-        <div class="video-content">
-          <input id="video-upload" type="file" accept="video/*" hidden>
+    <div class="video-content">
+      <video
+        id="video-player"
+        controls
+        playsinline
+        preload="metadata"
+        poster="img/photo1.jpg"
+      >
+        <source src="img/ruru_and_aynur.MOV" type="video/mp4">
+        Your browser does not support this video.
+      </video>
 
-          <label id="video-upload-label" for="video-upload">
-            ♥ click here to add our video ♥
-          </label>
-
-          <video id="video-player" class="hidden" controls playsinline></video>
-
-          <p class="video-note">
-            You can choose any video from your phone or laptop while testing.
-          </p>
-        </div>
-      </div>
-    </section>
+      <p class="video-note">
+        Some of your favorite moments together ♥
+      </p>
+    </div>
+  </div>
+</section>
 
     <footer>
       <p>made with too much love, too many memories, and a little bit of emo energy ♥</p>

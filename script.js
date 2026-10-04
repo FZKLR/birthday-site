@@ -92,25 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const videoUploadInput = document.getElementById("video-upload");
-  const videoPlayer = document.getElementById("video-player");
-  const videoUploadLabel = document.getElementById("video-upload-label");
-
-  if (videoUploadInput && videoPlayer && videoUploadLabel) {
-    videoUploadInput.addEventListener("change", (event) => {
-      const selectedFile = event.target.files?.[0];
-
-      if (!selectedFile) return;
-
-      const videoUrl = URL.createObjectURL(selectedFile);
-
-      videoPlayer.src = videoUrl;
-      videoPlayer.classList.remove("hidden");
-      videoUploadLabel.classList.add("hidden");
-      videoPlayer.play().catch(() => {});
-    });
-  }
-
   const canvas = document.getElementById("sakura-canvas");
 
   if (!canvas) return;
@@ -213,4 +194,4 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeCanvas();
     createPetals();
   });
-});
+}); 
