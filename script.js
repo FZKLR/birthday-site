@@ -1,153 +1,216 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", () => {
+  const birthDate = new Date("2006-10-06T00:00:00");
+  const countdownElement = document.getElementById("countdown");
 
-    // --- Live Age Counter ---
-    const birthDate = new Date('2006-10-06T00:00:00');
-    const countdownElement = document.getElementById('countdown');
+  function updateAge() {
+    if (!countdownElement) return;
 
-    function updateAge() {
-        const now = new Date();
+    const now = new Date();
 
-        let years = now.getFullYear() - birthDate.getFullYear();
-        let months = now.getMonth() - birthDate.getMonth();
-        let days = now.getDate() - birthDate.getDate();
-        let hours = now.getHours() - birthDate.getHours();
-        let minutes = now.getMinutes() - birthDate.getMinutes();
-        let seconds = now.getSeconds() - birthDate.getSeconds();
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+    let hours = now.getHours() - birthDate.getHours();
+    let minutes = now.getMinutes() - birthDate.getMinutes();
+    let seconds = now.getSeconds() - birthDate.getSeconds();
 
-        if (seconds < 0) { seconds += 60; minutes--; }
-        if (minutes < 0) { minutes += 60; hours--; }
-        if (hours < 0) { hours += 24; days--; }
-        if (days < 0) {
-            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-            days += prevMonth.getDate();
-            months--;
-        }
-        if (months < 0) { months += 12; years--; }
-
-        countdownElement.innerHTML = `${years}y ${months}m ${days}d <br> ${hours}h ${minutes}m ${seconds}s`;
+    if (seconds < 0) {
+      seconds += 60;
+      minutes -= 1;
     }
-    setInterval(updateAge, 1000);
-    updateAge();
 
-    // --- Initialize AOS (Animate on Scroll) ---
-    AOS.init({
-        duration: 800,
-        once: true,
+    if (minutes < 0) {
+      minutes += 60;
+      hours -= 1;
+    }
+
+    if (hours < 0) {
+      hours += 24;
+      days -= 1;
+    }
+
+    if (days < 0) {
+      const previousMonthDays = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        0
+      ).getDate();
+
+      days += previousMonthDays;
+      months -= 1;
+    }
+
+    if (months < 0) {
+      months += 12;
+      years -= 1;
+    }
+
+    countdownElement.textContent =
+      `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  updateAge();
+  setInterval(updateAge, 1000);
+
+  const gallery = document.getElementById("lightgallery");
+
+  if (gallery && typeof lightGallery !== "undefined") {
+    lightGallery(gallery, {
+      speed: 450,
+      download: false,
+      selector: "a"
+    });
+  }
+
+  const scroller = document.getElementById("hall-of-fame-scroller");
+  const scrollLeftButton = document.getElementById("scroll-left-btn");
+  const scrollRightButton = document.getElementById("scroll-right-btn");
+
+  if (scroller && scrollLeftButton && scrollRightButton) {
+    const getScrollDistance = () => {
+      const firstCard = scroller.querySelector(".snap-center");
+      if (!firstCard) return 250;
+
+      const styles = window.getComputedStyle(scroller);
+      const gap = Number.parseInt(styles.gap, 10) || 0;
+
+      return firstCard.offsetWidth + gap;
+    };
+
+    scrollRightButton.addEventListener("click", () => {
+      scroller.scrollBy({
+        left: getScrollDistance(),
+        behavior: "smooth"
+      });
     });
 
-    // --- Initialize LightGallery ---
-    lightGallery(document.getElementById('lightgallery'), {
-        speed: 500,
-        download: false
+    scrollLeftButton.addEventListener("click", () => {
+      scroller.scrollBy({
+        left: -getScrollDistance(),
+        behavior: "smooth"
+      });
+    });
+  }
+
+  const videoUploadInput = document.getElementById("video-upload");
+  const videoPlayer = document.getElementById("video-player");
+  const videoUploadLabel = document.getElementById("video-upload-label");
+
+  if (videoUploadInput && videoPlayer && videoUploadLabel) {
+    videoUploadInput.addEventListener("change", (event) => {
+      const selectedFile = event.target.files?.[0];
+
+      if (!selectedFile) return;
+
+      const videoUrl = URL.createObjectURL(selectedFile);
+
+      videoPlayer.src = videoUrl;
+      videoPlayer.classList.remove("hidden");
+      videoUploadLabel.classList.add("hidden");
+      videoPlayer.play().catch(() => {});
+    });
+  }
+
+  const canvas = document.getElementById("sakura-canvas");
+
+  if (!canvas) return;
+
+  const context = canvas.getContext("2d");
+  const petalCount = 38;
+  let petals = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  class Petal {
+    constructor(startAnywhere = true) {
+      this.reset(startAnywhere);
+    }
+
+    reset(startAnywhere = false) {
+      this.x = Math.random() * canvas.width;
+      this.y = startAnywhere
+        ? Math.random() * canvas.height
+        : -20 - Math.random() * 160;
+
+      this.width = 9 + Math.random() * 12;
+      this.height = 7 + Math.random() * 9;
+      this.opacity = 0.32 + Math.random() * 0.42;
+      this.xSpeed = -0.25 + Math.random() * 0.8;
+      this.ySpeed = 0.45 + Math.random() * 1.25;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotationSpeed = -0.025 + Math.random() * 0.05;
+      this.color = Math.random() > 0.5 ? "#ff4fb8" : "#c78cff";
+    }
+
+    update() {
+      this.x += this.xSpeed;
+      this.y += this.ySpeed;
+      this.rotation += this.rotationSpeed;
+
+      if (
+        this.y > canvas.height + 30 ||
+        this.x < -30 ||
+        this.x > canvas.width + 30
+      ) {
+        this.reset(false);
+      }
+    }
+
+    draw() {
+      context.save();
+      context.globalAlpha = this.opacity;
+      context.translate(this.x, this.y);
+      context.rotate(this.rotation);
+      context.fillStyle = this.color;
+
+      context.beginPath();
+      context.moveTo(0, -this.height / 2);
+      context.bezierCurveTo(
+        this.width / 2,
+        -this.height / 2,
+        this.width / 2,
+        this.height / 2,
+        0,
+        this.height / 2
+      );
+      context.bezierCurveTo(
+        -this.width / 2,
+        this.height / 2,
+        -this.width / 2,
+        -this.height / 2,
+        0,
+        -this.height / 2
+      );
+      context.fill();
+
+      context.restore();
+    }
+  }
+
+  function createPetals() {
+    petals = Array.from({ length: petalCount }, () => new Petal(true));
+  }
+
+  function animatePetals() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    petals.forEach((petal) => {
+      petal.update();
+      petal.draw();
     });
 
-    // --- Hall of Fame Scroller ---
-    const scroller = document.getElementById('hall-of-fame-scroller');
-    const scrollLeftBtn = document.getElementById('scroll-left-btn');
-    const scrollRightBtn = document.getElementById('scroll-right-btn');
-    if (scroller && scrollLeftBtn && scrollRightBtn) {
-        const card = scroller.querySelector('.snap-center');
-        const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card.parentElement).gap);
+    requestAnimationFrame(animatePetals);
+  }
 
-        scrollRightBtn.addEventListener('click', () => {
-            scroller.scrollBy({ left: cardWidth, behavior: 'smooth' });
-        });
-        scrollLeftBtn.addEventListener('click', () => {
-            scroller.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-        });
-    }
+  resizeCanvas();
+  createPetals();
+  animatePetals();
 
-    // --- Video Uploader ---
-    const videoUploadInput = document.getElementById('video-upload');
-    const videoPlayer = document.getElementById('video-player');
-    const videoUploadLabel = document.getElementById('video-upload-label');
-
-    if(videoUploadInput && videoPlayer && videoUploadLabel) {
-        videoUploadLabel.addEventListener('click', () => {
-            videoUploadInput.click();
-        });
-
-        videoUploadInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const videoURL = URL.createObjectURL(file);
-                videoPlayer.src = videoURL;
-                videoPlayer.classList.remove('hidden');
-                videoUploadLabel.classList.add('hidden');
-                videoPlayer.play();
-            }
-        });
-    }
-
-
-    // --- Sakura Petal Animation ---
-    const canvas = document.getElementById('sakura-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let petals = [];
-        const numPetals = 50;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function Petal() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height * 2 - canvas.height;
-            this.w = 25 + Math.random() * 15;
-            this.h = 20 + Math.random() * 10;
-            this.opacity = this.w / 40;
-            this.flip = Math.random();
-            this.xSpeed = 1.5 + Math.random() * 2;
-            this.ySpeed = 1 + Math.random() * 1;
-            this.flipSpeed = Math.random() * 0.03;
-        }
-
-        Petal.prototype.draw = function() {
-            if (this.y > canvas.height || this.x > canvas.width) {
-                this.x = -this.w;
-                this.y = Math.random() * canvas.height * 2 - canvas.height;
-                this.xSpeed = 1.5 + Math.random() * 2;
-                this.ySpeed = 1 + Math.random() * 1;
-                this.flip = Math.random();
-            }
-            ctx.globalAlpha = this.opacity;
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.bezierCurveTo(this.x + this.w / 2, this.y - this.h / 2, this.x + this.w, this.y, this.x + this.w / 2, this.y + this.h / 2);
-            ctx.bezierCurveTo(this.x, this.y + this.h, this.x - this.w / 2, this.y, this.x, this.y);
-            ctx.closePath();
-            ctx.fillStyle = '#FFB7C5';
-            ctx.fill();
-        }
-
-        Petal.prototype.update = function() {
-            this.x += this.xSpeed;
-            this.y += this.ySpeed;
-            this.flip += this.flipSpeed;
-            this.draw();
-        }
-
-        function createPetals() {
-            petals = [];
-            for (let i = 0; i < numPetals; i++) {
-                petals.push(new Petal());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(petal => {
-                petal.update();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        createPetals();
-        animate();
-    }
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    createPetals();
+  });
 });
-

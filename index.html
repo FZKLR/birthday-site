@@ -1,226 +1,256 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, [Enter Name of your loved one]!</title>
+  <meta name="theme-color" content="#0b070c">
+  <title>Happy Birthday, My Love ♥</title>
 
-  <!-- This script pulls in Tailwind CSS for styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- These are for the animations and photo gallery -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
-
-  <!-- Google Fonts for the Anime look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap"
+    rel="stylesheet"
+  >
 
-  <!-- Link to your new external CSS file -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css"
+  >
+
   <link rel="stylesheet" href="style.css">
-  <!-- IMPORTANT: Replace with a real image link after you upload it -->
-  <meta property="og:image" content="https://placehold.co/1200x630/87CEEB/FFFFFF?text=A+Surprise+For+Rabiiiiiiii">
 </head>
+
 <body>
-<!-- Canvas for the falling cherry blossoms -->
-<canvas id="sakura-canvas"></canvas>
+  <canvas id="sakura-canvas" aria-hidden="true"></canvas>
 
-<!-- Section 1: Hero Welcome -->
-<header class="h-screen relative flex items-center justify-center text-white overflow-hidden">
-  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-    <source src="img/sa.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <nav class="top-nav" aria-label="Birthday site navigation">
+    <a href="#home">home</a>
+    <a href="#message">message</a>
+    <a href="#gallery">pics</a>
+    <a href="#hall-of-fame">favorites</a>
+    <!-- <a href="#video">video</a> -->
+  </nav>
 
-  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-
-  <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
-    <h1 class="text-5xl md:text-7xl font-anime drop-shadow-lg">Happy Birthday, Rabiii!</h1>
-    <p class="mt-4 text-xl font-semibold">Celebrating the first of many wonderful birthdays together!</p>
-    <div id="countdown" class="mt-6 text-2xl font-semibold tracking-widest leading-relaxed"></div>
-  </div>
-</header>
-
-<!-- Main Content -->
-<main class="container mx-auto p-6 md:p-12">
-
-  <!-- Section 2: A Letter For You -->
-  <section class="my-16 md:my-24 max-w-3xl mx-auto text-center" data-aos="fade-up">
-    <h2 class="text-4xl md:text-5xl font-anime text-sakura mb-8 drop-shadow-sm">A Special Message For You</h2>
-    <div class="text-left text-lg leading-relaxed space-y-4 bg-white p-8 rounded-lg shadow-lg">
-      <!-- TODO: Write your personal letter here -->
-      <p>Hey my love,</p>
-      <p>Happy birthday meri jaan. I hope you have a wonderful day filled with joy and laughter. Here;s to the first birthday together and to many many more. </p>
-      <p>Thank you for always being there for me and for making every day special. You mean the world to me and I am so grateful to have you in my life. You are the reason I smile every day, and I strive to be the best version of myself for you. Enjoy this little collage of our memories together so far and lets make many more!</p>
-      <p class="text-right mt-8">
-        Yours Foreverrrr<br>
-      </p>
-    </div>
-  </section>
-
-  <!-- Section 3: The Timeline -->
-  <section class="my-16 md:my-24">
-    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">Our Story SO Far</h2>
-    <div class="space-y-16">
-      <!-- Timeline Item 1 -->
-      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
-        <!-- TODO: Replace with your photo -->
-        <img src="img/img1.jpg" alt="Add photo 1" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white"> <!--replce img1.png with name of your img-->
-        <div class="text-center md:text-left">
-          <!-- TODO: Customize the date and story -->
-          <h3 class="text-2xl font-anime text-sakura">Our first date</h3>
-            <br>
-        </div>
+  <main>
+    <section id="home" class="hero-section">
+      <div class="profile-banner">
+        ♥ ♥ ♥ you are in my extended heart network ♥ ♥ ♥
       </div>
-      <!-- Timeline Item 2 -->
-      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
-        <!-- TODO: Replace with your photo -->
-        <img src="img/img2.jpg" alt="Add photo 2" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
-        <div class="text-center md:text-right">
-          <!-- TODO: Customize the date and story -->
-          <h3 class="text-2xl font-anime text-sakura">Working out together</h3>
-          <br>
-        </div>
-      </div>
-      <!-- Timeline Item 3 (NEW) -->
-      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
-        <img src="img/img3.jpg" alt="Add photo 3" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
-        <div class="text-center md:text-left">
-          <h3 class="text-2xl font-anime text-sakura">Our favorite wallpaper</h3>
-          <br>
-        </div>
-      </div>
-      <!-- Timeline Item 4 (NEW) -->
-      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
-        <img src="img/img4.jpg" alt="Add photo4" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">
-        <div class="text-center md:text-right">
-          <h3 class="text-2xl font-anime text-sakura">Our first relaxing day in uni</h3>
-            <br>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Section 4: Your Favourite Photos of your loved Ones (NEW SECTION) -->
-  <section class="my-16 md:my-24">
-    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">Hall of Fame</h2>
-    <div class="relative">
-      <!-- Scroll Buttons -->
-      <button id="scroll-left-btn" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-      </button>
-      <button id="scroll-right-btn" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-      </button>
+      <div class="hero-grid">
+        <aside class="profile-card">
+          <p class="profile-card-title">birthday girl profile</p>
 
-      <!-- Scrollable Container -->
-      <div id="hall-of-fame-scroller" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide p-4 -mx-4">
-        <div class="flex snap-x snap-mandatory gap-8">
-          <!--  Card 1 -->
-          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="100">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
-              <img src="img/image1.jpg" alt="Photo 1" class="w-full h-80 object-cover rounded-md mb-4"> 
-              <h3 class="text-2xl font-anime text-sakura">Engulfed in our own world</h3>
-            </div>
+          <div class="profile-photo-wrap">
+            <img
+              src="img/img1.jpg"
+              alt="A photo of us together"
+              class="profile-photo"
+            >
           </div>
-          <!--  Card 2 -->
-          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="200">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
-              <img src="img/image2.jpg" alt="Photo 2" class="w-full h-80 object-cover rounded-md mb-4">
-              <h3 class="text-2xl font-anime text-sakura">Always making Aynur uncomfortable</h3>
-            </div>
+
+          <p class="status-line">status: taken by me ♥</p>
+          <p class="status-line">mood: obsessed with you</p>
+          <p class="status-line">last updated: your birthday</p>
+
+          <div class="mini-links">
+            <span>♥ send love</span>
+            <span>★ add to favorites</span>
+            <span>✦ best girlfriend ever</span>
           </div>
-          <!--  Card 3 -->
-          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="300">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
-              <img src="img/image3.jpg" alt="Photo 3" class="w-full h-80 object-cover rounded-md mb-4">
-              <h3 class="text-2xl font-anime text-sakura">Always holding hands</h3>
-            </div>
+        </aside>
+
+        <div class="hero-content">
+          <p class="section-kicker">welcome to your birthday page</p>
+
+          <h1>Happy Birthday,<br><span>My Love ♥</span></h1>
+
+          <p class="hero-subtitle">
+            A tiny corner of the internet made only for you.
+          </p>
+
+          <div class="age-box">
+            <span class="age-label">you have officially been iconic for:</span>
+            <div id="countdown">loading...</div>
           </div>
-          <!--  Card 4 -->
-          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="400">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
-              <img src="img/image4.jpg" alt="Photo 4" class="w-full h-80 object-cover rounded-md mb-4">
-              <h3 class="text-2xl font-anime text-sakura">Our secret view</h3>
-            </div>
-          </div>
-          <!--  Card 5 -->
-          <div class="snap-center flex-shrink-0 w-10/12 sm:w-1/2 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center h-full">
-              <img src="img/image5.jpg" alt="Photo 5" class="w-full h-80 object-cover rounded-md mb-4">
-              <h3 class="text-2xl font-anime text-sakura">Taking every chance I can</h3>
-            </div>
+
+          <p class="profile-status">
+            currently: celebrating the prettiest girl in the world
+          </p>
+
+          <div class="hero-decoration" aria-hidden="true">
+            <span>♥</span>
+            <span>★</span>
+            <span>✦</span>
+            <span>♥</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Section 5: The Gallery -->
-  <section class="my-16 md:my-24">
-    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12" data-aos="fade-up">Our Gallery</h2>
-    <div id="lightgallery" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <a href="img/imag1.JPG" data-aos="zoom-in" class="block w-full h-48 md:h-64">
-        <img src="img/imag1.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 1">
-      </a>
-      <a href="img/imag2.JPG" data-aos="zoom-in" data-aos-delay="100" class="block w-full h-48 md:h-64">
-        <img src="img/imag2.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 2">
-      </a>
-      <a href="img/imag3.JPG" data-aos="zoom-in" data-aos-delay="200" class="block w-full h-48 md:h-64">
-        <img src="img/imag3.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 3">
-      </a>
-      <a href="img/imag4.JPG" data-aos="zoom-in" data-aos-delay="300" class="block w-full h-48 md:h-64">
-        <img src="img/imag4.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 4">
-      </a>
-      <!-- Second Row of Photos -->
-      <a href="img/imag5.JPG" data-aos="zoom-in" data-aos-delay="400" class="block w-full h-48 md:h-64">
-        <img src="img/imag5.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 5">
-      </a>
-      <a href="img/imag6.JPG" data-aos="zoom-in" data-aos-delay="500" class="block w-full h-48 md:h-64">
-        <img src="img/imag6.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 6">
-      </a>
-      <a href="img/imag7.JPG" data-aos="zoom-in" data-aos-delay="600" class="block w-full h-48 md:h-64">
-        <img src="img/imag7.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 7">
-      </a>
-      <a href="img/imag8.JPG" data-aos="zoom-in" data-aos-delay="700" class="block w-full h-48 md:h-64">
-        <img src="img/imag8.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 8">
-      </a>
-      <!-- Third Row of Photos -->
-      <a href="img/imag9.JPG" data-aos="zoom-in" data-aos-delay="800" class="block w-full h-48 md:h-64">
-        <img src="img/imag9.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 9">
-      </a>
-      <a href="img/imag10.JPG" data-aos="zoom-in" data-aos-delay="900" class="block w-full h-48 md:h-64">
-        <img src="img/imag10.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 10">
-      </a>
-      <a href="img/imag11.JPG" data-aos="zoom-in" data-aos-delay="1000" class="block w-full h-48 md:h-64">
-        <img src="img/imag11.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 11">
-      </a>
-      <a href="img/imag12.JPG" data-aos="zoom-in" data-aos-delay="1100" class="block w-full h-48 md:h-64">
-        <img src="img/imag12.JPG" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Memory 12">
-      </a>
-    </div>
-  </section>
-
-    <!-- Section 6: Finale -->
-    <section class="my-16 md:my-24" data-aos="fade-up">
-        <h2 class="text-4xl md:text-5xl font-anime text-center mb-4">Happy Birthday My Loveeeee</h2>
-        <div class="max-w-4xl mx-auto rounded-lg shadow-2xl overflow-hidden bg-navy">
     </section>
 
-</main>
+    <section id="message" class="content-section">
+      <p class="section-kicker">♥ who i'd like to meet: you, forever ♥</p>
+      <h2>A Special Message For You</h2>
 
-<!-- Footer -->
-<footer class="bg-navy text-white p-8 text-center">
-  <p>Enjoy your day to the fullest.</p>
-  <p class="text-sm opacity-70 mt-2">I love you infinity^infinity!!!</p>
-</footer>
+      <div class="message-window">
+        <div class="window-bar">
+          <span>message_from_my_heart.exe</span>
+          <span>_ □ ×</span>
+        </div>
 
-<!-- These scripts are for the animations and photo gallery -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+        <div class="message-content">
+          <p>Hey my love,</p>
 
-<!-- Link to your new external JavaScript file -->
-<script src="script.js"></script>
+          <p>
+            Happy birthday meri jaan. I hope you have a wonderful day filled
+            with joy and laughter. Here’s to the first birthday together and
+            to many many more.
+          </p>
+
+          <p>
+            Thank you for always being there for me and for making every day
+            special. You mean the world to me and I am so grateful to have you
+            in my life. You are the reason I smile every day, and I strive to
+            be the best version of myself for you.
+          </p>
+
+          <p>
+            Enjoy this little collage of our memories together so far and
+            let’s make many more!
+          </p>
+
+          <p class="signature">Yours Foreverrrr ♥</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="content-section">
+      <p class="section-kicker">[ our pics ] click a photo to make it bigger</p>
+      <h2>Our Little Memory Wall</h2>
+
+      <div id="lightgallery" class="gallery-grid">
+        <a href="img/image2.jpg" class="memory-card" data-sub-html="<p>my favorite person ♥</p>">
+          <img src="img/image2.jpg" alt="A memory of us together">
+          <span class="photo-caption">my favorite person ♥</span>
+        </a>
+
+        <a href="img/img4.jpg" class="memory-card" data-sub-html="<p>one of our best days</p>">
+          <img src="img/img4.jpg" alt="A happy moment together">
+          <span class="photo-caption">one of our best days</span>
+        </a>
+
+        <a href="img/image3.jpg" class="memory-card" data-sub-html="<p>us being us ★</p>">
+          <img src="img/image3.jpg" alt="A photo of us">
+          <span class="photo-caption">us being us ★</span>
+        </a>
+
+        <a href="img/image1.jpg" class="memory-card" data-sub-html="<p>core memory unlocked</p>">
+          <img src="img/image1.jpg" alt="A special shared memory">
+          <span class="photo-caption">core memory unlocked</span>
+        </a>
+
+        <a href="img/imag2.jpg" class="memory-card" data-sub-html="<p>still obsessed with you</p>">
+          <img src="img/imag2.jpg" alt="A lovely photo together">
+          <span class="photo-caption">still obsessed with you</span>
+        </a>
+
+        <a href="img/img2.jpg" class="memory-card" data-sub-html="<p>another day with you ♥</p>">
+          <img src="img/img2.jpg" alt="A memory together">
+          <span class="photo-caption">another day with you ♥</span>
+        </a>
+
+        <a href="img/image5.jpg" class="memory-card" data-sub-html="<p>forever my favorite</p>">
+          <img src="img/image5.jpg" alt="A photo of us enjoying time together">
+          <span class="photo-caption">forever my favorite</span>
+        </a>
+
+        <a href="img/imag1.jpg" class="memory-card" data-sub-html="<p>more memories please</p>">
+          <img src="img/imag1.jpg" alt="A final happy memory together">
+          <span class="photo-caption">more memories please</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="hall-of-fame" class="content-section">
+      <p class="section-kicker">★ certified iconic moments ★</p>
+      <h2>Hall Of Fame</h2>
+
+      <div class="scroll-controls">
+        <button id="scroll-left-btn" type="button" aria-label="Scroll favorites left">
+          &lt;&lt; back
+        </button>
+        <button id="scroll-right-btn" type="button" aria-label="Scroll favorites right">
+          next &gt;&gt;
+        </button>
+      </div>
+
+      <div id="hall-of-fame-scroller" class="hall-scroller scrollbar-hide">
+        <article class="fame-card snap-center">
+          <span class="fame-icon">♥</span>
+          <h3>Your Laugh</h3>
+          <p>The soundtrack to every good day.</p>
+        </article>
+
+        <article class="fame-card snap-center">
+          <span class="fame-icon">★</span>
+          <h3>Our Random Calls</h3>
+          <p>Even normal conversations become my favorite part of the day.</p>
+        </article>
+
+        <article class="fame-card snap-center">
+          <span class="fame-icon">✦</span>
+          <h3>Your Smile</h3>
+          <p>The easiest way to make everything feel better.</p>
+        </article>
+
+        <article class="fame-card snap-center">
+          <span class="fame-icon">♥</span>
+          <h3>Our Memories</h3>
+          <p>Every little moment somehow becomes special with you.</p>
+        </article>
+
+        <article class="fame-card snap-center">
+          <span class="fame-icon">★</span>
+          <h3>You</h3>
+          <p>Still my favorite person, always.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- <section id="video" class="content-section">
+      <p class="section-kicker">now playing: one of our favorite memories</p>
+      <h2>Press Play When You Miss Me</h2>
+
+      <div class="video-window">
+        <div class="window-bar">
+          <span>our_memory_player.mp4</span>
+          <span>_ □ ×</span>
+        </div>
+
+        <div class="video-content">
+          <input id="video-upload" type="file" accept="video/*" hidden>
+
+          <label id="video-upload-label" for="video-upload">
+            ♥ click here to add our video ♥
+          </label>
+
+          <video id="video-player" class="hidden" controls playsinline></video>
+
+          <p class="video-note">
+            You can choose any video from your phone or laptop while testing.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <footer>
+      <p>made with too much love, too many memories, and a little bit of emo energy ♥</p>
+      <p>© forever us</p>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
